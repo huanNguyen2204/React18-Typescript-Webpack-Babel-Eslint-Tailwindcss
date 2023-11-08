@@ -10,6 +10,11 @@
       {
         "regenerator": true
       }
+    ],
+    [
+      "module-resolver", {
+        "alias": { "@": "./src" }
+      }
     ]
   ]
 }
