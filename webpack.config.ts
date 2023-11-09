@@ -16,10 +16,10 @@ const config: Configuration = {
   output: {
     publicPath: "/",
   },
-  entry: "./src/index.tsx",
+  entry: "./src/public/index.tsx",
   module: {
     rules: [
-      /* -- JS/TS Loader -- */
+      /* -- JS/TS loader -- */
       {
         test: /\.(ts|js)x?$/i,
         exclude: /node_modules/,
@@ -35,20 +35,30 @@ const config: Configuration = {
         }, 
       },
 
-      /* -- CSS Loader + Tailwindcss -- */
+      /* -- CSS loader + Tailwindcss -- */
       {
         test: /\.css$/i,
         include: path.resolve(__dirname, 'src'),
         use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
+
+      /* -- File loader -- */
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
     ],
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js", "jsx"],
+    extensions: [".tsx", ".ts", ".js", ".jsx"],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "src/index.html",
+      template: "src/public/index.html",
     }),
     new HotModuleReplacementPlugin(),
     new ESLintWebpackPlugin()
