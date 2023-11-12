@@ -1,6 +1,8 @@
 import path from "path";
+import { checkTypeOfProject } from "./root.config";
 import ESLintWebpackPlugin from "eslint-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import Dotenv from 'dotenv-webpack';
 import {
   Configuration as WebpackConfig,
   HotModuleReplacementPlugin,
@@ -16,7 +18,7 @@ const config: Configuration = {
   output: {
     publicPath: "/",
   },
-  entry: "./src/public/index.tsx",
+  entry: checkTypeOfProject(),
   module: {
     rules: [
       /* -- JS/TS loader -- */
@@ -61,7 +63,8 @@ const config: Configuration = {
       template: "src/public/index.html",
     }),
     new HotModuleReplacementPlugin(),
-    new ESLintWebpackPlugin()
+    new ESLintWebpackPlugin(),
+    new Dotenv()
   ],
   devtool: "inline-source-map",
   devServer: {
