@@ -8,6 +8,9 @@ import {
 } from "webpack";
 import { Configuration as WebpackDevServerConfig } from "webpack-dev-server";
 
+// Handle config
+import { checkTypeOfProject } from "./root.config";
+
 type Configuration = WebpackConfig & {
   devServer?: WebpackDevServerConfig;
 };
@@ -17,7 +20,7 @@ const config: Configuration = {
   output: {
     publicPath: "/",
   },
-  entry: "./src/App.tsx",
+  entry: checkTypeOfProject(),
   module: {
     rules: [
       /* -- JS/TS loader -- */
