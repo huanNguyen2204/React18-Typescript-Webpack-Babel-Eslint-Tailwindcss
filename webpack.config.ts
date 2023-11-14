@@ -20,7 +20,7 @@ const config: Configuration = {
   output: {
     publicPath: "/",
   },
-  entry: checkTypeOfProject(),
+  entry: "./src/App.tsx",
   module: {
     rules: [
       /* -- JS/TS loader -- */
